@@ -1,0 +1,11 @@
+spring.datasource.url: jdbc:tc:postgresql://localhost/myappdb
+spring.datasource.driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+spring.datasource.username: postgres
+spring.datasource.password: postgres
+spring.jpa.database-platform: org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto: none
+  # This line is only needed if you are using flyway for database migrations
+  # and not using the default location of `db/migration`
+spring.flyway.locations=classpath: db/migration/
+
+jwt.expiration.time: 90000
