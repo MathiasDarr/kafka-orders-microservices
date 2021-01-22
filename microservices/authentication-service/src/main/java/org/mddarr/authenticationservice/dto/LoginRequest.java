@@ -1,5 +1,4 @@
-package org.mddarr.authenticationservice.models.requests;
-
+package org.mddarr.authenticationservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,11 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class LoginRequest {
 
-    private String firstname;
-    private String lastname;
     private String email;
     private String password;
-
 }

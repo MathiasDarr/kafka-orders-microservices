@@ -1,22 +1,38 @@
 package org.mddarr.authenticationservice.services;
 
 import lombok.AllArgsConstructor;
+import org.mddarr.authenticationservice.dto.AuthenticationResponse;
+import org.mddarr.authenticationservice.dto.LoginRequest;
+
+import org.mddarr.authenticationservice.dto.RefreshTokenRequest;
 import org.mddarr.authenticationservice.models.UserEntity;
-import org.mddarr.authenticationservice.models.requests.RegisterRequest;
+import org.mddarr.authenticationservice.dto.RegisterRequest;
 import org.mddarr.authenticationservice.repositories.UserRepository;
+import org.mddarr.authenticationservice.security.JwtProvider;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
+import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtProvider jwtProvider;
+    private final RefreshTokenService refreshTokenService;
 
     @Transactional
     public void register(RegisterRequest registerRequest){
@@ -30,8 +46,38 @@ public class AuthService {
         userRepository.save(user);
     }
 
+    public AuthenticationResponse login(LoginRequest loginRequest) {
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
+                loginRequest.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authenticate);
+        String token = jwtProvider.generateToken(authenticate);
+//                .refreshToken(refreshTokenService.generateRefreshToken().getToken())
+        return AuthenticationResponse.builder()
+                .authenticationToken(token)
+
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
+                .email(loginRequest.getEmail())
+                .build();
+    }
+
     private String encodePassword(String password){
         return passwordEncoder.encode(password);
+    }
+
+    public AuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+        refreshTokenService.validateRefreshToken(refreshTokenRequest.getRefreshToken());
+        String token = jwtProvider.generateTokenWithUserName(refreshTokenRequest.getUsername());
+        return AuthenticationResponse.builder()
+                .authenticationToken(token)
+//                .refreshToken(refreshTokenRequest.getRefreshToken())
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
+                .email(refreshTokenRequest.getUsername())
+                .build();
+    }
+
+    public boolean isLoggedIn() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
     }
 
 }
