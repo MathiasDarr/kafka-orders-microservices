@@ -20,6 +20,7 @@
 	</properties>
 	<modules>
 		<module>authentication-service</module>
+		<module>ui-request-service</module>
 	</modules>
 
 	<repositories>
