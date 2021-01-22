@@ -51,10 +51,9 @@ public class AuthService {
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
-//                .refreshToken(refreshTokenService.generateRefreshToken().getToken())
         return AuthenticationResponse.builder()
                 .authenticationToken(token)
-
+                .refreshToken(refreshTokenService.generateRefreshToken().getToken())
                 .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
                 .email(loginRequest.getEmail())
                 .build();
@@ -69,7 +68,7 @@ public class AuthService {
         String token = jwtProvider.generateTokenWithUserName(refreshTokenRequest.getUsername());
         return AuthenticationResponse.builder()
                 .authenticationToken(token)
-//                .refreshToken(refreshTokenRequest.getRefreshToken())
+                .refreshToken(refreshTokenRequest.getRefreshToken())
                 .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
                 .email(refreshTokenRequest.getUsername())
                 .build();

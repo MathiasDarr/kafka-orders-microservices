@@ -19,10 +19,11 @@ public class RefreshTokenService {
     private final RefreshTokenRepository refreshTokenRepository;
 
     public RefreshToken generateRefreshToken() {
+        System.out.println("LOGGING IN");
         RefreshToken refreshToken = new RefreshToken();
         refreshToken.setToken(UUID.randomUUID().toString());
         refreshToken.setCreated_date(Instant.now());
-
+        refreshToken.setId(UUID.randomUUID().toString());
         return refreshTokenRepository.save(refreshToken);
     }
 

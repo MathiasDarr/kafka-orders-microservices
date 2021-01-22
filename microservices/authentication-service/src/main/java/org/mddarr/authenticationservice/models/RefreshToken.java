@@ -15,7 +15,6 @@ import java.time.Instant;
 @Table(name="refresh_token",schema = "users")
 public class RefreshToken {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String token;
     private Instant created_date;
