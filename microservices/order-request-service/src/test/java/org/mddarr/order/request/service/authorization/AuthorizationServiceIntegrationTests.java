@@ -2,15 +2,13 @@ package org.mddarr.order.request.service.authorization;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mddarr.order.request.service.dto.RegisterRequest;
+import org.mddarr.order.request.service.dto.auth.RegisterRequest;
 import org.mddarr.order.request.service.repositories.UserRepository;
-import org.mddarr.order.request.service.services.AuthService;
+import org.mddarr.order.request.service.services.auth.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.List;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)

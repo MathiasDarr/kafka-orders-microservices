@@ -1,12 +1,12 @@
-package org.mddarr.order.request.service.services;
+package org.mddarr.order.request.service.services.auth;
 
 import lombok.AllArgsConstructor;
-import org.mddarr.order.request.service.dto.AuthenticationResponse;
-import org.mddarr.order.request.service.dto.LoginRequest;
+import org.mddarr.order.request.service.dto.auth.AuthenticationResponse;
+import org.mddarr.order.request.service.dto.auth.LoginRequest;
 
-import org.mddarr.order.request.service.dto.RefreshTokenRequest;
+import org.mddarr.order.request.service.dto.auth.RefreshTokenRequest;
 import org.mddarr.order.request.service.models.UserEntity;
-import org.mddarr.order.request.service.dto.RegisterRequest;
+import org.mddarr.order.request.service.dto.auth.RegisterRequest;
 import org.mddarr.order.request.service.repositories.UserRepository;
 import org.mddarr.order.request.service.security.JwtProvider;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

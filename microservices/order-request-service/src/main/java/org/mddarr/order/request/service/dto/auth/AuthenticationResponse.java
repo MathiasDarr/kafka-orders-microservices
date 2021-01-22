@@ -1,4 +1,4 @@
-package org.mddarr.order.request.service.dto;
+package org.mddarr.order.request.service.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

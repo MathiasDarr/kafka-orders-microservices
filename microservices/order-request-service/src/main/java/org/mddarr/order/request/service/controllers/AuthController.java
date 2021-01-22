@@ -2,13 +2,13 @@ package org.mddarr.order.request.service.controllers;
 
 
 import lombok.AllArgsConstructor;
-import org.mddarr.order.request.service.dto.AuthenticationResponse;
-import org.mddarr.order.request.service.dto.LoginRequest;
+import org.mddarr.order.request.service.dto.auth.AuthenticationResponse;
+import org.mddarr.order.request.service.dto.auth.LoginRequest;
 
-import org.mddarr.order.request.service.dto.RefreshTokenRequest;
-import org.mddarr.order.request.service.dto.RegisterRequest;
-import org.mddarr.order.request.service.services.AuthService;
-import org.mddarr.order.request.service.services.RefreshTokenService;
+import org.mddarr.order.request.service.dto.auth.RefreshTokenRequest;
+import org.mddarr.order.request.service.dto.auth.RegisterRequest;
+import org.mddarr.order.request.service.services.auth.AuthService;
+import org.mddarr.order.request.service.services.auth.RefreshTokenService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

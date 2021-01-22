@@ -19,9 +19,9 @@
 		<java.version>11</java.version>
 	</properties>
 	<modules>
-<!--		<module>authentication-service</module>-->
-<!--		<module>certificate-service</module>-->
-		<module>order-request-service</module>
+		<module>orders-services</module>
+<!--		<module>avro-schema</module>-->
+<!--		<module>order-request-service</module>-->
 	</modules>
 
 	<repositories>

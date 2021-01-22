@@ -1,14 +1,20 @@
-package org.mddarr.order.request.service.dto;
+package org.mddarr.order.request.service.dto.auth;
+
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
+@Builder
+public class RegisterRequest {
 
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
+
 }

@@ -1,4 +1,4 @@
-package org.mddarr.order.request.service.services;
+package org.mddarr.order.request.service.services.auth;
 
 import lombok.AllArgsConstructor;
 import org.mddarr.order.request.service.models.UserEntity;
