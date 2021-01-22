@@ -1,10 +1,10 @@
 server:
   port: 8080
 
-spring:
-  application:
+
+spring.application:
     name: ride-request-service-application
-  kafka:
+spring.kafka:
     bootstrap-servers:
       - localhost:9092
     properties:
@@ -23,3 +23,35 @@ spring:
         interceptor.classes: io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor
     template:
       default-topic:
+
+
+spring.datasource:
+    url: jdbc:postgresql://localhost:5432/postgresdb
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    hikari:
+      connectionTimeout: 30000
+      idleTimeout: 30000
+      maxLifetime: 1800000
+      minimumIdle: 5
+      maximumPoolSize: 20
+      poolName: SpringBootJPAHikariCP
+  #      schema: users
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation=true:
+spring.jpa:
+    properties:
+      hibernate:
+        jdbc.lob.non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+
+
+jwt.expiration.time: 90000

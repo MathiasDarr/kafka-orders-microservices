@@ -6,7 +6,7 @@ import org.mddarr.orders.event.dto.AvroOrder;
 import org.mddarr.orders.request.service.Constants;
 import org.mddarr.orders.request.service.UatAbstractTest;
 
-import org.mddarr.orders.request.service.models.OrderRequest;
+import org.mddarr.orders.request.service.models.orders.OrderRequest;
 import org.mddarr.orders.request.service.services.AvroOrderRequestProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
